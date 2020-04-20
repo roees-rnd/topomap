@@ -24,7 +24,7 @@ InDoorOpeningDetector::InDoorOpeningDetector(double minWidth,
    m_MinWidth(minWidth),
    m_MaxWidth(maxWidth)
 {
-  m_Algorithm = 1;
+  m_Algorithm = 2;
 
   m_MaxGap = 0.02;
   m_MinPostSize = 0.05;
@@ -162,7 +162,8 @@ InDoorOpeningDetector::algorithm2(const sensor_msgs::LaserScan &scan,
                                   double minWidth, double maxWidth)
 {
   // We search on each side a certain angle out for the closest point
-  const double maxAngle = 20.0 * M_PI / 180.0;
+  // ROEE DB DB DB added +90 for RP-lidar
+  const double maxAngle = (20.0+90.0) * M_PI / 180.0;
 
   // Search for the point closest to the scanner on the right hand side
   double a = scan.angle_min;

@@ -75,8 +75,9 @@ void TopologicalGraphBuilder::odomCallback(const nav_msgs::OdometryConstPtr& odo
 
   door_detector.setMinRange(0.15);
 
-  //We found a door
-  if(door_detector.inDoorOpening(laser_scan_, 0.6, 1.2) && inside_door==false && door_detector.m_RangeL < 0.55 && door_detector.m_RangeR < 0.55 )
+  //We found a door  // DB DB ROEE second param changed from:
+  //door_detector.inDoorOpening(laser_scan_, 0.6, 1.2), to
+  if(door_detector.inDoorOpening(laser_scan_, 0.4, 1.2) && inside_door==false && door_detector.m_RangeL < 0.55 && door_detector.m_RangeR < 0.55 )
   {
 
     ROS_DEBUG("Door found. Width: %G \t AngleR: %G\t AngleL: %G\t RangeR: %G\t RangeL: %G\t",
@@ -204,8 +205,8 @@ void TopologicalGraphBuilder::addNewPlaceHolder()
 {
 
 //  ROS_DEBUG("Number place holders: [%d]",number_place_holders_);
-
-  if(distanceBetweenHoldersAndCurrentPosition()>1.0 || number_place_holders_==0 )
+// ROEE distance betweem wayponts:
+  if(distanceBetweenHoldersAndCurrentPosition()>0.25 || number_place_holders_==0 )
   {
     place_holders_.resize(number_place_holders_+1);
     place_holders_[number_place_holders_].setPosition(robot_current_pose_.position);

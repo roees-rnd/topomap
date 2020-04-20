@@ -1,0 +1,22 @@
+<launch>
+
+
+
+  <!--- Topological map builder -->
+  <node pkg="rocs_topological_mapping" type="rocs_topological_map_builder" name="topo_builder" output="screen">
+<!--
+  <remap from="/scan" to="/RP_scan" />
+  <remap from="/odom"  to="/odometry/filtered" />
+  <remap from="/base_link" to="/base_cart_link"/>
+
+  <remap from="/RP_scan" to="/scan"/>
+  <remap from="/odometry/filtered" to="/odom"/>
+  <remap from="/base_cart_link"    to="/base_link" />
+-->
+  <remap from="/base_scan" to="/RP_scan" />
+  <remap from="/odom"  to="/odometry/filtered" />
+  <remap from="/base_cart_link"    to="/base_link" />
+
+
+</node>
+</launch>
